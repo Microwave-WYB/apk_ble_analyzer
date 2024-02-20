@@ -40,6 +40,7 @@ def match_uuids(file_path: str, relative_path: Optional[str]) -> List[UUIDInfo]:
 
     Args:
         file_path (str): Path to the file.
+        relative_path (str): The path to the file relative to the decompiled directory.
 
     Returns:
         list[UUIDInfo]: List of UUIDInfo objects.
@@ -119,7 +120,7 @@ class Analyzer:
         self.apk_path: str = apk_path
         self.jadx_path: str = jadx_path
 
-    def match_uuids_in_sources(self, base_path: Optional[str] = None) -> List[UUIDInfo]:
+    def match_uuids(self, base_path: Optional[str] = None) -> List[UUIDInfo]:
         """
         Matches UUIDs in the APK sources and returns a list of UUIDInfo objects.
 
