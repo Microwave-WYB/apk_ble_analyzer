@@ -44,7 +44,7 @@ if __name__ == "__main__":
                 analyzer = Analyzer(apk_path, jadx_path)
                 base_path = decompile_apk(jadx_path, apk_path)
             with st.spinner("Analyzing..."):
-                uuids = analyzer.match_uuids_in_sources(base_path)
+                uuids = analyzer.match_uuids(base_path)
 
             st.write("Found UUIDs:")
             st.write([result.to_dict() for result in uuids])
