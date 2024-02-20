@@ -119,16 +119,6 @@ class Analyzer:
         self.apk_path: str = apk_path
         self.jadx_path: str = jadx_path
 
-    def _decompile_apk(self) -> str:
-        """
-        Decompile the APK and return the path to the decompiled source code directory.
-
-        Returns:
-            str: Path to the decompiled source code directory.
-        """
-        base_path = decompile_apk(self.jadx_path, self.apk_path)
-        return base_path
-
     def match_uuids_in_sources(self, base_path: Optional[str] = None) -> List[UUIDInfo]:
         """
         Matches UUIDs in the APK sources and returns a list of UUIDInfo objects.
@@ -138,7 +128,7 @@ class Analyzer:
         """
         all_uuid_infos = []
         if base_path is None:
-            base_path = self._decompile_apk()
+            base_path = decompile_apk(self.jadx_path, self.apk_path)
         sources_path = os.path.join(base_path, "sources")
 
         for root, _, files in os.walk(sources_path):
